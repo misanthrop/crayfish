@@ -1,0 +1,9 @@
+*.o
+*.so
+*.dll
+*.swp
+*.creator
+*.user
+*.files
+*.config
+*.includes
