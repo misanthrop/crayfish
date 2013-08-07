@@ -1,9 +1,12 @@
 CFLAGS += -fpic -std=c11
 
-libluada.so: luada.o
+luada.so: luada-xlib.o
 	$(CC) -shared $< -lX11 -o $@
 
-all: libluada.so
+luada.dll: luada-winapi.o
+	$(CC) -shared $< -llua -luser32 -o $@
+
+all: luada.dll
 
 clean:
-	$(RM) luada.o libluada.so
+	$(RM) *.o luada.so luada.dll
