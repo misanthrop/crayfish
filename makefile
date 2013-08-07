@@ -6,7 +6,7 @@ luada.so: luada-xlib.o
 luada.dll: luada-winapi.o
 	$(CC) -shared $< -llua -luser32 -o $@
 
-all: luada.dll
+all: luada.so
 
 clean:
 	$(RM) *.o luada.so luada.dll
