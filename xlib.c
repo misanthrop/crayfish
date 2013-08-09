@@ -1,12 +1,14 @@
 #include <time.h>
 #include <memory.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <X11/keysym.h>
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/Xproto.h>
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
+#include "crayfish.h"
 
 static Display *dpy;
 static int screen;
@@ -122,10 +124,27 @@ static void updatemodifiers(KeySym key, int press)
 
 void cf_key(unsigned key, int press)
 {
+	static const unsigned keys[cf_last] =
+	{
+		0, XK_BackSpace, XK_Tab, XK_Return, XK_Escape, XK_space,
+		XK_apostrophe, XK_comma, XK_period, XK_slash,
+		XK_0, XK_1, XK_2, XK_3, XK_4, XK_5, XK_6, XK_7, XK_8, XK_9, XK_semicolon, XK_equal,
+		XK_bracketleft, XK_backslash, XK_bracketright,
+		XK_a, XK_b, XK_c, XK_d, XK_e, XK_f, XK_g, XK_h, XK_i, XK_j, XK_k, XK_l, XK_m,
+		XK_n, XK_o, XK_p, XK_q, XK_r, XK_s, XK_t, XK_u, XK_v, XK_w, XK_x, XK_y, XK_z,
+		XK_Delete, XK_Pause, XK_Control_L, XK_Control_R, XK_Shift_L, XK_Shift_R, XK_Alt_L, XK_Alt_R, XK_Super_L, XK_Super_R, XK_Menu,
+		XK_Up, XK_Down, XK_Left, XK_Right, XK_Home, XK_End, XK_Page_Up, XK_Page_Down, XK_Insert, XK_KP_Separator,
+		XK_Caps_Lock, XK_Scroll_Lock, XK_Num_Lock, XK_Select, XK_Print,
+		XK_F1, XK_F2, XK_F3, XK_F4, XK_F5, XK_F6, XK_F7, XK_F8, XK_F9, XK_F10, XK_F11, XK_F12,
+		XK_KP_0, XK_KP_1, XK_KP_2, XK_KP_3, XK_KP_4, XK_KP_5, XK_KP_6, XK_KP_7, XK_KP_8, XK_KP_9,
+		XK_multiply, XK_division, XK_plus, XK_minus, XK_KP_Enter, XK_backslash
+	};
+
 	Window focus;
 	int revert;
+	KeySym ks = keys[key];
 	XGetInputFocus(dpy, &focus, &revert);
-	keyevent(focus, XKeysymToKeycode(dpy, key), press ? KeyPress : KeyRelease);
+	keyevent(focus, XKeysymToKeycode(dpy, ks), press ? KeyPress : KeyRelease);
 	XFlush(dpy);
-	updatemodifiers(key, press);
+	updatemodifiers(ks, press);
 }

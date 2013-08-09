@@ -1,20 +1,21 @@
-require'luada'
+cf = require'crayfish'
 
-print('width:', luada.width)
-print('height:', luada.height)
+print('width:', cf.width())
+print('height:', cf.height())
 
---[[luada.key(luada.keys.lshift,true)
-luada.press(luada.keys.h)
-luada.key(luada.keys.lshift,false)
-luada.press(luada.keys.e)
-luada.press(luada.keys.l)
-luada.press(luada.keys.l)
-luada.press(luada.keys.o)]]
-
+cf.key(cf.lshift,true)
+cf.press(cf.h)
+cf.key(cf.lshift,false)
+cf.press(cf.e)
+cf.press(cf.l)
+cf.press(cf.l)
+cf.press(cf.o)
+--[[
 for i = 1,5 do
-	luada.sleep(1000)
-	local x = math.random(luada.width)
-	local y = math.random(luada.height)
-	luada.movepointer(x,y)
-	luada.click(1)
+	cf.sleep(1000)
+	local x = math.random(cf.width())
+	local y = math.random(cf.height())
+	cf.movepointer(x,y)
+	cf.click(cf.lbutton)
 end
+]]

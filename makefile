@@ -1,12 +1,12 @@
 CFLAGS += -fpic -std=c11
 
-luada.so: luada-xlib.o
-	$(CC) -shared $< -lX11 -o $@
+crayfish.so: xlib.o crayfish.o
+	$(CC) -shared $^ -lX11 -o $@
 
-luada.dll: luada-winapi.o
-	$(CC) -shared $< -llua52 -luser32 -o $@
+crayfish.dll: winapi.o crayfish.o
+	$(CC) -shared $^ -llua52 -luser32 -o $@
 
-all: luada.dll
+all: crayfish.so
 
 clean:
-	$(RM) *.o luada.so luada.dll
+	$(RM) *.o crayfish.so crayfish.dll
