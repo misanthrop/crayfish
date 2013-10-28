@@ -10,12 +10,7 @@ cf.press(cf.e)
 cf.press(cf.l)
 cf.press(cf.l)
 cf.press(cf.o)
---[[
-for i = 1,5 do
-	cf.sleep(1000)
-	local x = math.random(cf.width())
-	local y = math.random(cf.height())
-	cf.movepointer(x,y)
-	cf.click(cf.lbutton)
-end
-]]
+
+cf.key(cf.lalt,true)
+cf.press(cf.tab)
+cf.key(cf.lalt,false)

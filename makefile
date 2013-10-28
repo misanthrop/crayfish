@@ -6,7 +6,7 @@ crayfish.so: xlib.o crayfish.o
 crayfish.dll: winapi.o crayfish.o
 	$(CC) -shared $^ -llua52 -luser32 -o $@
 
-all: crayfish.so
+all: crayfish.dll
 
 clean:
 	$(RM) *.o crayfish.so crayfish.dll
