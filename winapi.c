@@ -1,4 +1,5 @@
 #define UNICODE
+#define _WIN32_WINNT 0x0500
 #include <windows.h>
 #include <time.h>
 #include <memory.h>
@@ -33,8 +34,8 @@ void cf_key(unsigned key, int press)
 	static const unsigned keys[cf_last] =
 	{
 		0, VK_BACK, VK_TAB, VK_RETURN, VK_ESCAPE, VK_SPACE,
-		'\'', ',', '.', '/',
-		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ';', '=',
+		'\'', VK_OEM_COMMA, VK_OEM_PERIOD, VK_OEM_2,
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', VK_OEM_1, VK_OEM_PLUS,
 		'(', '\\', ')',
 		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
 		'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
@@ -43,7 +44,7 @@ void cf_key(unsigned key, int press)
 		VK_CAPITAL, VK_SCROLL, VK_NUMLOCK, VK_SELECT, VK_PRINT,
 		VK_F1, VK_F2, VK_F3, VK_F4, VK_F5, VK_F6, VK_F7, VK_F8, VK_F9, VK_F10, VK_F11, VK_F12,
 		VK_NUMPAD0, VK_NUMPAD1, VK_NUMPAD2, VK_NUMPAD3, VK_NUMPAD4, VK_NUMPAD5, VK_NUMPAD6, VK_NUMPAD7, VK_NUMPAD8, VK_NUMPAD9,
-		VK_MULTIPLY, VK_DIVIDE, VK_ADD, VK_SUBTRACT, VK_RETURN, '\\'
+		VK_MULTIPLY, VK_DIVIDE, VK_ADD, VK_SUBTRACT, VK_RETURN, VK_OEM_3
 	};
 	UINT sc = MapVirtualKey(keys[key], 0);
 	keybd_event(keys[key], sc, press ? 0 : KEYEVENTF_KEYUP, 0);
